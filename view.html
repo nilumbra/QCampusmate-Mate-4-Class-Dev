@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <script src="https://unpkg.com/vue@3"></script> -->
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+<body>
+
+</body>
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.18.7/package/dist/xlsx.full.min.js"></script>
+
+<script>
+  
+</script>
+<script type="module">
+    import { createApp } from 'vue'
+    import GradeDashboard from './GradeDashboard.js'
+    const vm = createApp({
+        components: {
+          GradeDashboard
+        },
+        created() {
+          // Fetch on init
+          this.loadGPAData();
+        },
+        computed: {
+          count() {
+            if(localStorage.count) {
+              localStorage.count++;
+            } else {
+              localStorage.count = 0;
+            }
+            return localStorage.count
+          }
+        }, 
+
+        
+
+        methods: {
+          clearStorage: () => { localStorage.removeItem("GPADATA");},
+          exportGPADATA() {
+            // GPAData = JSON.parse(localStorage.getItem("GPADATA"));
+            const nameMap = this.gpaData.tHeadNameMap,
+              categories = this.gpaData.categories,
+              course_grades = this.gpaData.course_grades,
+              first = nameMap['subject'];
+
+            nameMap['category'] = '分野系列名／科目名';
+            var filename = 'grade_report.xlsx',
+                    data = [{[first]: course_grades[0]['category']}],
+                  reKeys = obj => { const keyValues = Object.keys(obj)
+                                    .map(k => {const newKey = nameMap[k] || k;
+                                          return { [newKey]: obj[k] }
+                                        });
+                                    console.log(Object.assign({}, ...keyValues));
+                                    return Object.assign({}, ...keyValues);
+                                    }
+
+            course_grades.forEach((e, i, arr) => {
+              data.push(reKeys(e));
+              if(arr[i+1] && arr[i]['category'] != arr[i+1]['category']){
+                data.push({[first]: arr[i+1]['category']});
+              }
+            })
+
+            var ws = XLSX.utils.json_to_sheet(data);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "成績表");
+            XLSX.writeFile(wb,filename);
+          },
+          loadGPAData(){ // function to set this.gpaData 
+            this.getGPADataObject()
+                .then(res => {
+                  this.gpaData = res;
+                })
+                .catch(err => {
+                  console.error('Error occurred when loading test GPAData from file system', err);
+                })
+          },
+          getGPADataObject() { // Promise resolves to a GPAData object upon success
+            return new Promise(function(resolve, reject){
+              let GPADATA = localStorage.getItem('GPADATA');
+              if (GPADATA) {
+                GPADATA = JSON.parse(GPADATA);
+                GPADATA['categories'] = JSON.parse(GPADATA[['categories']]);
+                GPADATA['course_grades'] = JSON.parse(GPADATA['course_grades']);
+                resolve(GPADATA);
+              } else {
+                const xhr = new XMLHttpRequest();
+                xhr.overrideMimeType("application/json");
+                xhr.open('GET', "./Testdata/example_course_data.json");
+                xhr.onload = function() {
+                  if (xhr.status >= 200 && xhr.status < 300) {
+                    localStorage.setItem('GPADATA', xhr.responseText);
+                    GPADATA = xhr.responseText;
+                    GPADATA = JSON.parse(GPADATA);
+                    GPADATA['categories'] = JSON.parse(GPADATA[['categories']]);
+                    GPADATA['course_grades'] = JSON.parse(GPADATA['course_grades']);
+                    resolve(GPADATA);
+                  } else {
+                    reject({
+                      status:xhr.status,
+                      statusText: xhr.statusText
+                    })
+                  }
+                }
+
+                xhr.onerror = function () {
+                  reject({
+                    status: xhr.status,
+                    statusText: xhr.statusText
+                  });
+                };
+                xhr.send();
+              }
+            });
+          } 
+        },
+        data() {
+            return {
+                gpaData: {course_grades:[], categories:[]}
+            }
+        }
+    }).mount("#app");
+</script>
+<div id="app">
+  <p>You have visited this page {{count}} times.</p>
+  <button @click="clearStorage">Clear localStorage</button>
+  <button @click="exportGPADATA">Export</button>
+  <grade-dashboard
+  :data="gpaData"
+  >
+  </grade-dashboard>
+</div>
+</html>
+<!-- 
+<table v-if="data.course_grades.length !== 0">
+  <thead >
+    <tr> 
+      <th v-for="key in data.tHeadNameMap">
+        <span>{{key}}</span>
+      </th>
+    </tr>
+  </thead>
+</table>
+  <tbody>
+    
+  	<tr v-for="entry in data.course_grades">
+      <td v-for="col in entry">{{col}}</td>
+    </tr>
+  </tbody>
+
+<template v-for="category in data.categories">
+  <tr> 
+    <td>{{category}}</td>
+  </tr>
+  <tr v-for="entry in filteredData(category)">
+    <td v-for="col in entry">{{col}}</td>
+  </tr>
+</template> -->
+<!-- -->

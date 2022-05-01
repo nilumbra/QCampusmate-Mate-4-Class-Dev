@@ -1,0 +1,6 @@
+.DS_Store
+Examples/**
+VueNotes.md
+Testdata/**
+Testdata\ Output/**
+Screenshots/**
