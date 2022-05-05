@@ -4,3 +4,7 @@ VueNotes.md
 Testdata/**
 Testdata\ Output/**
 Screenshots/**
+dist/
+node_modules/
+
+
