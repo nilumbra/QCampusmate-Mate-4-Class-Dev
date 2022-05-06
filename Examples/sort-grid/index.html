@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+    {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3.2.31/dist/vue.esm-browser.js"
+        }
+      }
+</script>
+
+<body>
+    
+</body>
+<script type="module">
+import { createApp } from 'vue';
+import DemoGrid from './Grid.js';
+
+createApp({
+    components: {
+        DemoGrid
+    },
+    data() {
+        return {
+            searchQuery: '',
+            gridColumns: ['name', 'power'],
+            gridData: [
+            { name: 'Chuck Norris', power: Infinity },
+            { name: 'Bruce Lee', power: 9000 },
+            { name: 'Jackie Chan', power: 7000 },
+            { name: 'Jet Li', power: 8000 }
+            ]
+        }    
+    },
+}).mount('#app')
+
+this.columns.reduce(
+    (o, key) => ((o[key] = 1), o), 
+    {}
+)
+</script>
+
+<div id="app">
+    <form id="search">
+        Search <input name="query" v-model="searchQuery"> 
+    </form>
+    <demo-grid 
+        :data="gridData" 
+        :columns="gridColumns" 
+        :filter-key="searchQuery">
+    </demo-grid>
+</div>
+</html>
+<!-- :class="dsc" -->
+

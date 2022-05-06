@@ -1,0 +1,29 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+.el-table td, .el-table th.is-leaf,.el-table--border, .el-table--group{
+  border-color: rgb(255, 225, 225);
+}
+.el-table--border::after, .el-table--group::after, .el-table::before{
+  background-color: rgb(255, 225, 225);
+}
+
+// https://blog.csdn.net/qq_25529689/article/details/119801752
+// Vertical line
+.el-table--border  td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+  border-right: 0px none #8A8A8A!important;
+}
+
+// td{
+//   padding:  0% 0%;
+// }
+
+// UCSD Academic Planner style unit tag
+.el-tag.unit {
+  padding: 3px 7px;
+  line-height: 14px;
+  text-align: center;
+  border-style: none;
+  border-radius: 10px !important;
+}

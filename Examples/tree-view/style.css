@@ -1,0 +1,14 @@
+ul,li {
+  list-style-type: none;
+} 
+
+li.no-decor {
+  list-style-type: none;
+}
+.item {
+  cursor: pointer;
+  line-height: 1.5;
+}
+.bold {
+  font-weight: bold;
+}

@@ -43,9 +43,7 @@
             return localStorage.count
           }
         }, 
-
-        
-
+    
         methods: {
           clearStorage: () => { localStorage.removeItem("GPADATA");},
           exportGPADATA() {
@@ -78,7 +76,7 @@
             XLSX.utils.book_append_sheet(wb, ws, "成績表");
             XLSX.writeFile(wb,filename);
           },
-          loadGPAData(){ // function to set this.gpaData 
+          loadGPAData(){ // function to load test data from file system and set this.gpaData 
             this.getGPADataObject()
                 .then(res => {
                   this.gpaData = res;
