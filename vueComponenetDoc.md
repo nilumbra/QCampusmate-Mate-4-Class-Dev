@@ -9,4 +9,8 @@ This documentation provides a brief description of their UI behavior for each Vu
   A table view which shows {course, gpa, unit} within the same quarter.
   props: `grade` 
 
-- CourseTree
+- `CourseTree.vue`
+
+```js 
+function initializedRequirementTree(degree_requirement: Object) {}
+```

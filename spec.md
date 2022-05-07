@@ -8,13 +8,36 @@
     - Able to filter by grade 
 
 - **Planner**
-   - Restructure information on `GPAを見る` page to `Degree Requirement`
-   - Able to add an ongoing/future course
-   - Automatic aggregation of current/projected GPA and total unit
-   - JSON/CSV export (**First implement this**)
-   - (May not be available in version 1.0.0) Excel export 
-   - (Not available in version 1.0.0) PDF export
+   - **v1.0.0**
+        - Restructure information on `GPAを見る` page to `Degree Requirement` ✅
+   
+        - Excel export ✅
+   - **v1.0.1**
+        - (JSON/CSV export)
+        - (Not available in version 1.0.0) PDF export
+        - Planner View
+            - Able to add/delete/update a future course
+            - Automatic aggregation of current/projected GPA and total unit✅
+        - Tree View (For checking against degree requirement)
+            - Able to add/delete/update a future course
+            - **Data Structure:** Check `CourseTree.vue`
+            - **Algorithm:** in `CourseTree.vue`
 
+                ```js
+                /* 
+                 * @params {Object} - degree_requirement
+                 *
+                 * @return void 
+                 */
+                function initializedRequirementTree(degree_requirement: Object) {
+                    /* 
+                    `
+                    Set tree data in `CourseTree.vue` as specified by `degree_requirement`, check vueComponentDoc.md for details 
+                    */
+                }
+                ```
+   
+   
 ## Interaction Specification
 **On page `成績照会>科目一覧を見る`**
 - Click `Load` button (= invoking function `extract` in `getCourseResults.js` will load the course result data into `localStorage.GPADATA`

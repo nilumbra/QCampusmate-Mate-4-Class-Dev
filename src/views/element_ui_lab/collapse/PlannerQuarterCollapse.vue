@@ -4,15 +4,18 @@
 <template>
   <el-collapse v-model="activeName" @change="handleCollapseChange">
     <!-- {{course_grades}} -->
-    <el-collapse-item  v-for="(gpaInYear, year, index) in course_grades" :name="index" :key="index">
+    <el-collapse-item  v-for="(gpaInYear, year, index) in course_grades" :name="year" :key="index">
       <template slot="title">
         <span>
           {{`${parseInt(year)} - ${parseInt(year) + 1}`}}
           &nbsp;
-          gpa <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{parseFloat(totalIn(enrollment, 'gpa')).toFixed(1)}} </b>
-          </el-tag>&nbsp;
-          annual units <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{parseFloat(totalIn(enrollment, 'unit')).toFixed(1)}} </b>
-          </el-tag>
+          <template v-for="(item, index) in summary(year)">
+            {{ index ? 'annual units' : 'gpa' }}
+            <el-tag :key="index" size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '---'}} </b>
+            </el-tag>&nbsp;
+          </template>
+          <!-- gpa 
+          annual units <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{parseFloat(totalIn(enrollment, 'unit')).toFixed(1)}} </b> -->
         </span>       
       </template>
 
@@ -25,10 +28,11 @@
                 <span>
                   {{ parseInt(index) ? 'Second Semester' : 'First Semester'}}
                   &nbsp;
-                  gpa <el-tag size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{totalIn(enrollment, 'gpa', parseInt(index)).toFixed(1)}} </b>
-                  </el-tag>&nbsp;
-                  semester units <el-tag size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{totalIn(enrollment, 'unit', parseInt(index)).toFixed(1)}} </b>
-                  </el-tag>
+                  <template v-for="(item, index) in summary(year, index)">
+                    {{ index ? 'semeter units' : 'gpa' }}
+                    <el-tag :key="index" size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '---'}} </b>
+                    </el-tag>&nbsp;
+                  </template>
                 </span> 
               </div>
               <div>
@@ -73,15 +77,22 @@ export default {
   components: {
     PlannerCard, CoursePlannerTable,
   },
+
   created() {
     // Fetch on init
     this.loadGPAData();
-    this.FIRSTQUARTER = new Set(['前', '夏学期', '前期集中', '春学期']);
-    this.SECONDQUARTER = new Set(['後', '秋学期', '後期集中', '冬学期', '通年']);
-
+    
     this.provideFinishedCourseDataByQuarter();
+    this.activeName = [''+new Date().getFullYear()];
     console.log(this.course_grades);
   },
+
+  computed: {
+    summary() {
+      return (year, quarter) => this.aggregate({ year: year, quarter: quarter })
+    }
+  },
+
   methods: {
     totalIn(year, type, period) {
       const Y = this.course_grades[year];
@@ -90,9 +101,11 @@ export default {
 
       return typeof period !== 'undefined' ? (period ? second : first) : first + second;
     },
+
     printData() {
       console.log(this.gpaData);
     },
+    
     loadGPAData(){  
       try {
           this.gpaData.course_grades = JSON.parse(gpaData.course_grades);
@@ -114,15 +127,25 @@ export default {
           this.getPlannerFormatCourseData(this.filterBy({quarter: 0, year: y})), 
           this.getPlannerFormatCourseData(this.filterBy({quarter: 1, year: y}))  
         ];
-        if (y === 2019){
-          for (let entry of this.course_grades[2019][0]) {
-            console.log(entry);   
-          }
-        } 
-        // console.log(this.course_grades[y])
+
+        for (let quarter_grades of this.course_grades[y]) {
+          quarter_grades.forEach(e => {console.log(e)});
+        }
       }
     },
 
+    filterQuarter(course_grades, quarter) {
+      if ((typeof course_grades === 'undefined') || (course_grades.length === 0)){
+        console.error("Empty input in <filterQuarter(course_grades)>");
+      }
+
+      const FIRSTQUARTER = new Set(['前', '夏学期', '前期集中', '春学期']);
+      const SECONDQUARTER = new Set(['後', '秋学期', '後期集中', '冬学期', '通年']);
+
+      const quarterSelector = typeof quarter === 'undefined' ? null : (quarter === 0 ? (q => FIRSTQUARTER.has(q)): (q => SECONDQUARTER.has(q)));
+
+      return course_grades.filter(({ quarter }) => quarterSelector(quarter));
+    },
     /*
      * params {Object} obj - expect a filter option object with at most four keys: {quarter, year, evaluation, category}
      * return {}
@@ -132,17 +155,17 @@ export default {
       const __year__ = obj['year'];
       const evaluation = obj['evaluation'];
       const __category__ = obj['category'];
-      const quarterSelector = typeof __quarter__ === 'undefined' ? null : (__quarter__ === 0 ? (q => this.FIRSTQUARTER.has(q)): (q => this.SECONDQUARTER.has(q)));
+      // const quarterSelector = typeof __quarter__ === 'undefined' ? null : (__quarter__ === 0 ? (q => this.FIRSTQUARTER.has(q)): (q => this.SECONDQUARTER.has(q)));
       
       var res;
       // console.log(this.gpaData.categories);
       // console.log(this.gpaData.course_grades);
-      if (quarterSelector) {
+      if (typeof __quarter__ !== 'undefined') {
         console.log(`Filtering by quarter...`);
         // console.log(typeof(this.gpaData.course_grades));
-        res = this.gpaData.course_grades.filter(({ quarter }) => quarterSelector(quarter));
-        // console.log(res);
+        res = this.filterQuarter(this.gpaData.course_grades, __quarter__);
       }
+
       if (__year__) {
         console.log("Filtering by year...");
         res = res.filter(({ year }) => parseInt(year) === parseInt(__year__));
@@ -172,6 +195,52 @@ export default {
       return data.map(e => pick(e))
     },
 
+    // Calculate GPA and passed unit base on this.course_grades
+    aggregate(obj) {
+      // - Not including withdrawn
+      const { quarter, year, category } = obj;
+      if (!(year)) console.error("Option is missing `year` key")
+      
+      const LETTER_TO_GPA = {65: 4, 66: 3, 67: 2, 68: 1, 70: 0};
+      const course_grades = typeof quarter === 'undefined' ? this.course_grades[year].flat() : this.course_grades[year][quarter];
+      console.log(course_grades, quarter, year, category)
+
+      var grade_statistics = course_grades
+        .filter(e => [65, 66, 67, 68, 70].includes(e['letter_evaluation'].charCodeAt(0) - 65248)) // Process only A, B, C, D, F courses
+        .filter(e => typeof(category) === 'string' ? e['category'] === category : true)
+        .reduce((agg, e)=>{
+            const unit = parseFloat(e['unit']),
+                letter = e['letter_evaluation'].charCodeAt(0) - 65248,
+                gpa = parseFloat(e['gpa']);
+            if (e['subject'] == '基幹教育セミナー') {
+                // console.log(gpa === 0 && letter === 70);
+            }
+            if (letter === 82) { // == 'R'
+                agg[String.fromCharCode(letter)][0] += unit;
+                agg['passed_units'] += unit;
+            } else if(gpa === 0 && letter === 70){ // == 'F'
+                agg['total_gpa_units'] += unit;
+                agg['F'][0] += unit;
+                // console.log(e['subject'], e['letter_evaluation'])
+            } else if ([65, 66, 67, 68].includes(letter)){ // == 'A, B, C, D'
+                const gpa = unit * LETTER_TO_GPA[letter];
+                agg['total_gpa_units'] += unit;
+                agg['total_gpa'] += gpa;
+                agg['passed_units'] += unit;
+                agg[String.fromCharCode(letter)][0] += unit;
+                agg[String.fromCharCode(letter)][1] += gpa; 
+            }
+            // console.log(e['subject'], String.fromCharCode(letter), letter === 82 ? '-' : letter === 70 ? 0 : unit * letter_to_gpa[letter]);
+            // agg['passed_units'] += unit;
+            // agg['total_gpa'] += parseFloat(curr['gpa']) * unit;
+            return agg 
+      }, {total_gpa_units: 0, passed_units: 0, total_gpa: 0, A: [0, 0], B: [0, 0], C: [0, 0], D: [0,0], F:[0,0], R:[0, 0]})
+
+      const avgGPA = (grade_statistics['total_gpa'] / grade_statistics['total_gpa_units']).toFixed(2);
+      // console.log(grade_statistics);
+      return [avgGPA, grade_statistics['passed_units'].toFixed(1)]
+    },
+
     handleCollapseChange(activeNames) {
       console.log(activeNames)
     }
@@ -185,7 +254,9 @@ export default {
       enrollment: '2019',
       course_grades: {},
       activeName: [],
-      // 2019: [
+      // EXAMPLE:
+      // course_grades: {
+      //   2019: [
       //     [
       //       { subject: 'Kikan Seminar', unit: 1, gpa: '*' },
       //     ],
@@ -202,6 +273,7 @@ export default {
       //       { subject: 'Mathematical Statistics', unit: 1.5, gpa: 4 },
       //     ],
       //   ],
+      // }
     };
   },
 };

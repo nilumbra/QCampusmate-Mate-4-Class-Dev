@@ -1,7 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <el-container style="height: auto; border: 1px solid #eee">
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-aside width="300px" style="background-color: rgb(238, 241, 246)">
       <course-tree>
       </course-tree>
     </el-aside>
