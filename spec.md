@@ -56,6 +56,7 @@
 
 
 ## Data Structure
+### GPAData
 ```js
 GPAData = 
 {
@@ -66,4 +67,38 @@ GPAData =
 ```
 ```js
 GPA_Letter = { 'A', 'B', 'C', 'D', 'F', 'R', 'W' }
+```
+
+### degree_requirement
+```json
+{
+  "label": "言語文化基礎科目",
+  "grpKey": null,
+  "compulsory": true,
+  "elective": true,
+  "unit": 7,
+  "children": [
+    {
+      "label": "英語",
+      "grpKey": null,
+      "compulsory": true,
+      "elective": true,
+      "courseKeys": ["学術英語", "Intensive English"],
+      "unit": 5,
+      "children": [
+      ]
+    },
+    {
+      "label": "韓国語",
+      "grpKey": null,
+      "compulsory": true,
+      "elective": true,
+      "courseKeys": ["韓国語Ⅰ", "韓国語Ⅱ", "韓国語Ⅲ","'韓国語フォーラム"],
+      "unit": 7,
+      "children": [
+      ]
+    }
+  ]
+}
+
 ```

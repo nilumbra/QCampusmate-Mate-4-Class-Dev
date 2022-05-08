@@ -20,7 +20,7 @@ export default {
                 grpKey: null,
                 compulsory: true,
                 elective: false,
-                courseKeys: new Set(),
+                courseKeys: new Set(['基幹教育セミナー']),
                 unit: 1,
               },
             ],
@@ -30,30 +30,31 @@ export default {
             grpKey: null,
             compulsory: true,
             elective: false,
-            courseKeys: new Set(),
+            courseKeys: new Set('課題協学科目'),
             unit: 2.5,
             children: [
               {
                 label: '課題協学科目',
               }
             ],
-          },
-          { 
-            label: '言語文化科目',
+          }, 
+          {
+            label: '言語文化基礎科目',
             grpKey: null,
             compulsory: true,
             elective: false,
             courseKeys: new Set(),
             unit: 7,
-            children: [
+            children:[
               {
-                label: '言語文化基礎科目',
+                label: '英語',
                 grpKey: null,
                 compulsory: true,
-                elective: false,
+                elective: true,
                 courseKeys: new Set(),
-                unit: 7,
+                unit: 5,
                 children:[
+                  
                   {
                     label: '学術英語A・リセプション',
                   },
@@ -66,8 +67,31 @@ export default {
                   {
                     label: '学術英語B・インテグレイト',
                   },
-                ]
-              }
+                ],
+              },
+              {
+                label: '韓国語',
+                grpKey: null,
+                compulsory: true,
+                elective: true,
+                courseKeys: new Set(),
+                unit: 7,
+                children:[
+                  
+                  {
+                    label: '学術英語A・リセプション',
+                  },
+                  {
+                    label: '学術英語A・プロダクション',
+                  },
+                  {
+                    label: '学術英語A・CALL',
+                  },
+                  {
+                    label: '学術英語B・インテグレイト',
+                  },
+                ],
+              },
             ],
           },
           { 

@@ -34,3 +34,20 @@ import App from './App.vue';
 
 
 `CoursePlannerTable.vue` 
+
+
+
+## Definitions
+
+### passed_course
+A functional definition for the purpose of this system: `passed_course` is any course whose prescribed unit we should count towards the acquired units which the DRC uses to check against degree requirement units.
+
+passed_course is any course that has any `letter_evalution` among ["A", "B", "C", "D", "R"]
+
+
+
+### My Course Categories (by Campusmate)
+```js
+// All KIKAN course categories. For all course record in <gpaData.course_grades>, if it is a kikan course, it should have exactly one of the lements from the following array as its `category` key's value.
+["基幹教育セミナー","課題協学科目","言語文化基礎科目","文系ディシプリン科目","理系ディシプリン科目","健康・スポーツ科目","総合科目","フロンティア科目","サイバーセキュリティ科目","（文）専攻教育科目","（文）低年次専攻教育科目","（経）専攻教育科目","（理）専攻教育科目","（理）専攻教育科目","（工）専攻教育科目"]
+```
