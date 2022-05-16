@@ -1,26 +1,31 @@
 /* eslint-disable no-unused-vars */
-/*
+/**
  * Assume at the invokation, the function will be provided
  * with a context <this> whose `meta` and `data` properties are expected to be initialized the way this function will do
- * @params {Object} - degree_requirement
- *
+ * @params {Object} degree_requirement - see degree_requirement.js
+ * @returns void
  */
-function initializeDRCTree(degree_requirement) {
-  // Build course node object
-  // Push it to curr_node.children
-  // Add gradeRecord index to seen
-  function setCourseNode(gradeRecord, index, curr_node) {
+ function initializeRequirementTree(degree_requirement) {
+
+  /**
+   * This function determines the state(passed/retakable(i.e. letter_evalution <= 'D')/failed/etc..) of a single courseRecord <gradeRecoard> and set the leaf of current DRC tree node <curr_node> according
+   * @params {Object} course_record - gpaData.course_records (DELETE this param upon next refactoring)
+   * @params {number} index - index of course_records in gpaData.course_records 
+   * @params {Object} curr_node - assume to be a leaf node in `degree_requirement`` data structure
+   * @returns void
+   */
+  function setDRCTreeNode(course_record, index, curr_node) {
     let course_node = {};
             
-    course_node['label'] = gradeRecord.subject;
-    course_node['unit'] = parseFloat(gradeRecord.unit)
+    course_node['label'] = course_record.subject;
+    course_node['unit'] = parseFloat(course_record.unit)
 
     // Passed/Not passed detection
-    if (gradeRecord.letter_evaluation.charCodeAt(0) - 65248 === 70) { // If 'F', don't increment the passed unit
+    if (course_record.letter_evaluation.charCodeAt(0) - 65248 === 70) { // If 'F', don't increment the passed unit
       course_node['failed'] = true;
       course_node['retakable'] = true; 
-    } else if ([65, 66, 67, 68, 82].includes(gradeRecord.letter_evaluation.charCodeAt(0) - 65248)) { // 'A', 'B', 'C', 'D', 'R'
-      if (gradeRecord.letter_evaluation.charCodeAt(0) - 65248 === 68) { // Mark 'D' courses as retakable;
+    } else if ([65, 66, 67, 68, 82].includes(course_record.letter_evaluation.charCodeAt(0) - 65248)) { // 'A', 'B', 'C', 'D', 'R'
+      if (course_record.letter_evaluation.charCodeAt(0) - 65248 === 68) { // Mark 'D' courses as retakable;
         course_node['retakable'] = true; 
       }
       course_node['passed'] = true;
@@ -36,21 +41,81 @@ function initializeDRCTree(degree_requirement) {
       seen.add(index);
     }
   
-  /* 
+  // Solve the Subset Sum problem using Dynamic programming
+  // This function should only be called by <getSubsetOfCoursesThatHasTheMinimumPartialSumOfUnitAboveRequirement>
+  function getMinPartialSumSubset_5(arr, target) {
+    const [m, n] = [arr.length + 1, (target - 1) / .5 + 3],
+               d = [],
+       dp_subset = [];
+
+    for (let i = 0; i < m; i++) {
+      d.push(new Array(n).fill(false));
+      dp_subset.push(new Array(n).fill(null));
+    }
+
+    for (let i = 0; i < m; i++){
+      d[i][0] = true;
+      dp_subset[i][0] = new Set(); 
+    }
+
+    for (let j = 1; j < n; j++){
+      d[0][j] = false;
+    }
+
+    for (let i = 1; i < m; i++) {
+      for (let j = 1; j < n; j++) {
+        if (arr[i - 1][1] * 2 > j) { // arr = [[index, unit], ...]
+          d[i][j] = d[i - 1][j];
+          dp_subset[i][j] = dp_subset[i - 1][j];
+        } else {
+          // d[i][j] = d[i - 1][j] || d[i - 1][j - arr[i - 1] * 2];
+          if (d[i - 1][j]) {
+            d[i][j] = d[i - 1][j];
+            dp_subset[i][j] = dp_subset[i - 1][j];
+          } else if (d[i - 1][j - arr[i - 1][1] * 2]) {
+            d[i][j] = d[i - 1][j - arr[i - 1][1] * 2];
+            dp_subset[i][j] = new Set(dp_subset[i - 1][j - arr[i - 1][1] * 2]);
+            dp_subset[i][j].add(arr[i - 1][0]);
+            // Found an optimal subset
+            if (j / 2 === target) { // unscale j to the original target
+              return [true, Array.from(dp_subset[i][j])];
+            }
+          } 
+        }
+      }
+    }
+    return [false, null];
+  }
+
+  /**
    * Before entering the for-loop that adds elective courses to the tree, <
    * minPartialSumOfUnit> should be called to get the subset of the indices of 
    * the courses that sum to a value as barely greater than the category 
    * requirement as possible.
-   *
-   * @return {Array<Object>} - return the minimum subset of courses
+   * @params {Array<[number, Object]>}- coursesInCategory: [[index, CourseRecordObject], ...]
+   * @returns {Array<number>} - return an array of `index`(`index` refers to the index in `course_grades`) 
    */
   function getSubsetOfCoursesThatHasTheMinimumPartialSumOfUnitAboveRequirement(coursesInCategory, required_unit) {
-    var courseSubset = [];
-    return courseSubset
+    var unit_sum  = 0;
+    const index_unit_arr = [];
+
+    for (let index of coursesInCategory) {
+      let unit = course_grades[index]['unit'];
+      unit_sum += unit;
+      index_unit_arr.push([index, unit]);
+    }
+
+    if (unit_sum <= required_unit) {
+      return coursesInCategory;
+    } else {
+      var [isSubsetSum, subset_indices] = getMinPartialSumSubset_5(index_unit_arr, required_unit);
+        
+      return isSubsetSum ? subset_indices : coursesInCategory;
+    }
   }
 
-  /* This function finds all elective courses that should fall under <curr_node>
-   * @return {Function} - a filter function expected by courser_grades.filter call. A call with this returned function will find all course that fall under this category
+  /** This function finds all elective courses that should fall under <curr_node>
+   * @returns {Function} - a filter function expected by courser_grades.filter call. A call with this returned function will find all course that fall under this category
    *
    */
   function createCourseCategoryMatcher(curr_node) {
@@ -74,40 +139,41 @@ function initializeDRCTree(degree_requirement) {
 
     /////////////////////////////////////////////////////
     return function(course_record, index) {
-      if (curr_node.label === "高年次基幹教育科目") {
-        console.log(`${course_record} `)
-      }
+      
       // The course is a kikan course only if its category is in KIKAN
       // Or it is listed as a 高年次基幹教育科目(by subject name)
       const courseIsUpperKikan = UPPER.some(key=> course_record.subject.includes(key)); 
       const courseIsKikan = KIKAN.has(course_record.category) || courseIsUpperKikan;
-
 
       // We add the course to the DRC tree node, only if both course and node belongs either KIKAN or MAJOR
       const doesCategoryMatch = !(courseIsKikan ^ nodeIsKikan);  
 
       // MATCH KIKAN COURSES USING HEURISTICS //
       const SouGouMatch = isSouGou && course_record.subject_number.includes(curr_node.grpKey),
-            OthersMatch = isOthers && KIKAN.has(course_record.category); // Note this will make the checker's correctness dependent on the index position of その他 node in the 基幹教育.children[]: the matcher is only expected to work correctly if その他 is the last element of 基幹教育.children[].
+            OthersMatch = isOthers && KIKAN.has(course_record.category), // Note this will make the checker's correctness dependent on the index position of その他 node in the 基幹教育.children[]: the matcher is only expected to work correctly if その他 is the last element of 基幹教育.children[].
+        UpperKikanMatch = isUpper && courseIsUpperKikan;
       /////////////////////////////////////////
 
-
+      if (curr_node.label === "高年次基幹教育科目" && course_record.subject.includes("現代史入門")) {
+        console.log(`UpperKikanMatch: ${UpperKikanMatch} \n courseIsUpperKikan: ${courseIsUpperKikan}\n courseIsKikan: ${courseIsKikan} \n doesCategoryMatch: ${doesCategoryMatch} \n
+         `)
+      }
       // MATCH MAJOR COURSES USING HEURISTICS //
       /////////////////////////////////////////
 
       return !seen.has(index) &&
              doesCategoryMatch && 
              (SouGouMatch /* Add to tree node if first condition matches and the course is a 総合科目. Otherwise, use the latter rules to match*/
-              || isUpper && courseIsUpperKikan || OthersMatch /* If encountering その他 node and there are still KIKAN courses left, add them all to the node*/ || curr_node.courseKeys.some(key => course_record.subject.includes(key)) && course_record.subject_number.includes(curr_node.grpKey) ||
+              || UpperKikanMatch || OthersMatch /* If encountering その他 node and there are still KIKAN courses left, add them all to the node*/ || curr_node.courseKeys.some(key => course_record.subject.includes(key)) && course_record.subject_number.includes(curr_node.grpKey) ||
               isCourseCommons && curr_node.courseKeys.some(key => course_record.subject.includes(key)) || course_record.subject === '卒業論文' && isThesis ||isFreeElective /* This operation assumes '自由選択科目' is the last element in 専攻教育科目.children[] */
               )
     }
   }
 
-  /* This function recursively initializes the DRC tree's view-model data structure.
+  /** This function recursively initializes the DRC tree's view-model data structure.
    * 
    * @params {Object} - At the initial invokation of this function, curr_node should either has a label called "基幹教育" or "専攻教育科目" (See degree_requirement.js);
-   * @return void - This function initialized part of the DRC's view-model, nothing to return
+   * @returns void - This function initialized part of the DRC's view-model, nothing to return
    */
   function initializeNode(curr_node) {
     /* Given a node representing the course structures, 
@@ -132,7 +198,7 @@ function initializeDRCTree(degree_requirement) {
                 throw Error(`Error: compulsory course gets cross-listed! When processing node: ${curr_node.label}`)
               }
 
-              setCourseNode(curr, i, curr_node);
+              setDRCTreeNode(curr, i, curr_node);
               req.delete(course_grades[i]); // This course has been checked, delete it
           }
 
@@ -141,50 +207,26 @@ function initializeDRCTree(degree_requirement) {
         console.log(JSON.stringify(curr_node, null, "\t"));
       } else { 
         // This node is an elective category,
-        // curr_node['children'] = course_grades.reduce(function(agg, curr, curr_index) { return buildCourseNodes(curr,curr_index)}, []);
-        // console.log(`${curr_node.label} is an elective. Unimplemented.`)
-
-        // Decide whether <curr_node> is a KIKAN category. If it is, only add KIKAN courses to it. If it is not, then it's assumed to be a major category
-
         const courseMatcher = createCourseCategoryMatcher(curr_node);
-
-        //////////////////////////TEST THIS PART FIRST///////////////////////
 
         // Get courses that match the curr_node
         var coursesInCategory = []; // [[index, CourseRecordObject], ...]
         for (let i = 0; i < course_grades.length; ++i) { // ~ O(n)
           let curr = course_grades[i];
           if (courseMatcher(curr, i)) {
-            coursesInCategory.push([curr, i]);
+            coursesInCategory.push(i);
           }
         }
-
-        coursesInCategory.forEach(([course_record, index]) => {
-            setCourseNode(course_record, index, curr_node)});
-        //////////////////////////TEST THIS PART FIRST///////////////////////
 
         // Figure out the optimized subset of courses to add, and then
         // add elements of the subset to <curr_node>
         // Running time: O(curr_node.unit * coursesInCategory.length
         // This should be the bottle neck for initializng a tree node
-        // getSubsetOfCoursesThatHasTheMinimumPartialSumOfUnitAboveRequirement(coursesInCategory, curr_node.units).forEach(({index, course_record}) => {
-        //     setCourseNode(course_record, index, curr_node)
-        //   }
-        // ) 
+        getSubsetOfCoursesThatHasTheMinimumPartialSumOfUnitAboveRequirement(coursesInCategory, curr_node.units).forEach(index => {
+            setDRCTreeNode(course_grades[index], index, curr_node)
+          }
+        ) 
 
-
-          // if (bigCategoryMatch && !seen.has(i) &&  // Ensure every course is categorized only once
-          // (courseKeys.length === 0 ?  : curr_node.courseKeys.some(key => curr.subject.includes(key) && (curr.subject_number.includes(curr_node.grpKey))/*  If any one of the courseKey appears in the name of this grade record, or '科目ナンバーリンク' of the category matches with the record's, then the record is a match*/))){
-
-          //   // if current category node does not have a group key assigned to it (e.g. 高年次基幹教育科目 or その他 or 自由選択科目etc., then match everything
-          //   //  ------------------
-          //   // |(THIS IS WRONG!!!)|
-          //   //  ------------------
-          //   //then 1. decide whether it's kikan or not, then match by courseKeys)
-          //   // const isKIKAN = KIKAN.has(curr_node.label);
-          //   setCourseNode(curr, i, curr_node);
-          
-        // console.log(curr_node);
         console.log(JSON.stringify(curr_node, null, "\t"));
       }
     } else { // Recursive count passed_unit;
@@ -201,19 +243,14 @@ function initializeDRCTree(degree_requirement) {
       }
         curr_node['passed_units'] = count;
         console.log(curr_node);
-        // curr_node['passed_units'] = curr_node.children
-        // .reduce((acc, node) => {
-        //   acc += node['passed_unit'] ? parseFloat(node['passed_unit']).toFixed(1) : 0;
-        //   return acc
-        // } ,0)
     }
   }  
 
-
+  
   // Copy the tree structure from degree_requirement.json
   this.meta = degree_requirement.meta;
   
-  // kikan
+  // Copy the value of degree_requirement
   // Changing properties of data[0] won't effect the prototype
   const j = JSON.stringify(degree_requirement),
         clone = JSON.parse(j);
@@ -222,13 +259,9 @@ function initializeDRCTree(degree_requirement) {
   // major
   this.data[1] = clone.requirements['専攻教育科目'];
 
-
-
-  // console.log(this.gpaData.course_grades);
   //Initialized tree values
   var seen = new Set();
   const course_grades = this.gpaData.course_grades.slice();
-  // var course_grades = this.gpaData.course_grades;
   initializeNode(this.data[0]);
   initializeNode(this.data[1]);
 }

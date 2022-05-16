@@ -12,5 +12,5 @@ This documentation provides a brief description of their UI behavior for each Vu
 - `CourseTree.vue`
 
 ```js 
-function initializedRequirementTree(degree_requirement: Object) {}
+function initializedRequirementTree(degree_requirement: Object){}
 ```

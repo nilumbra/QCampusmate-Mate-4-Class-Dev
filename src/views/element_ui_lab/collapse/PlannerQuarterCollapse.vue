@@ -11,7 +11,7 @@
           &nbsp;
           <template v-for="(item, index) in summary(year)">
             {{ index ? 'annual units' : 'gpa' }}
-            <el-tag :key="index" size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '---'}} </b>
+            <el-tag :key="index" size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '-----'}} </b>
             </el-tag>&nbsp;
           </template>
           <!-- gpa 
@@ -30,7 +30,7 @@
                   &nbsp;
                   <template v-for="(item, index) in summary(year, index)">
                     {{ index ? 'semeter units' : 'gpa' }}
-                    <el-tag :key="index" size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '---'}} </b>
+                    <el-tag :key="index" size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '-----'}} </b>
                     </el-tag>&nbsp;
                   </template>
                 </span> 
@@ -94,6 +94,7 @@ export default {
   },
 
   methods: {
+    /*
     totalIn(year, type, period) {
       const Y = this.course_grades[year];
       const first = Y[0].reduce((pre, cur) => pre + parseInt(cur[type], 10) || 0, 0);
@@ -105,7 +106,7 @@ export default {
     printData() {
       console.log(this.gpaData);
     },
-    
+    */
     loadGPAData(){  
       try {
           this.gpaData.course_grades = JSON.parse(gpaData.course_grades);
