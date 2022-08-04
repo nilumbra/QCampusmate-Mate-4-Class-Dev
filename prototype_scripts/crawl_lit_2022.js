@@ -195,7 +195,6 @@ getLit2022Courses()
               );
             });
           },
-
           return() {
             return { done: true }
           }
