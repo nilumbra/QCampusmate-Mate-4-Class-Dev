@@ -28,7 +28,7 @@ const qlit_2022_course_general_url = "https://www2.lit.kyushu-u.ac.jp/~syllabus/
 async function getLit2022Courses() {
   const res = await axios({
     method:'get',
-    url: test_url, 
+    url: qlit_2022_course_general_url, 
     responseType: 'arraybuffer'
   })
 
@@ -202,7 +202,7 @@ getLit2022Courses()
       }
     };
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       var courseData = [];
       (async () => {
         for await (const body of coursesIterable) {

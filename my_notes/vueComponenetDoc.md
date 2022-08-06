@@ -3,7 +3,6 @@ This documentation provides a brief description of their UI behavior for each Vu
 
 - PlannerQuarterCollapse
 
-
 - TestFormElements
 - CoursePlannerTable 
   A table view which shows {course, gpa, unit} within the same quarter.

@@ -4,7 +4,7 @@
 <template>
   <el-collapse v-model="activeName" @change="handleCollapseChange">
     <!-- {{course_grades}} -->
-    <el-collapse-item  v-for="(gpaInYear, year, index) in course_grades" :name="year" :key="index">
+    <el-collapse-item  v-for="(gpaInYear, year, index) in plannerTable" :name="year" :key="index">
       <template slot="title">
         <span>
           {{`${parseInt(year)} - ${parseInt(year) + 1}`}}
@@ -36,7 +36,12 @@
                 </span> 
               </div>
               <div>
-                <course-planner-table :grades="grades"></course-planner-table>
+                <course-planner-table :grades="grades" :addable="true"></course-planner-table>
+                <div style="margin-top: 10px">
+                  <el-button v-if="parseInt(year) == new Date().getFullYear()" @click="addCourse(year, index)">
+                    追加 {{s}}
+                  </el-button>
+                </div>
               </div>
             </el-card>
             <!-- Course Grade Card -->
@@ -47,31 +52,19 @@
   </el-collapse>
 </template>
 <style lang="scss">
-  .el-card {
-    &__header {
-      padding: 0px;
-      border-bottom: 0px solid rgb(255, 225, 225);
-    }
-    &__body {
-      padding: 0px;
-    }
-  }
 
-  .card-header{
-    padding: 10px;
-    background-color: rgb(255, 240, 240);
-    border-style: solid; 
-    border-color:rgb(255, 225, 225);
-    border-width: 1px;
-    border-bottom: 0px solid rgb(255, 225, 225);
-  }
 </style>
 <script>
+/* eslint-disable no-param-reassign */
 /* eslint-disable vue/no-unused-components */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-plusplus */
+/* eslint-disable */
+
 import PlannerCard from '../card/PlannerCard.vue';
 import CoursePlannerTable from '../table/CoursePlannerTable.vue';
-import gpaData from '@/Testdata/example_course_data.json';
+import { toRef } from 'vue';
 
 export default {
   components: {
@@ -81,179 +74,240 @@ export default {
   created() {
     // Fetch on init
     this.loadGPAData();
-    
+
+    // Provision the plannerTable data structure
     this.provideFinishedCourseDataByQuarter();
-    this.activeName = [''+new Date().getFullYear()];
-    console.log(this.course_grades);
+
+    // Compute the summary()
+
+    this.activeName = [`${new Date().getFullYear()}`];
+    // console.log(this.course_grades);
+  },
+  watch: {
+    'this.$store.state.plannerTable'(oldVal, newVal) {
+      console.log(`old: ${oldVal[2022][0].length}\n new: ${newVal[2022][0].length}`);
+    }
   },
 
   computed: {
     summary() {
-      return (year, quarter) => this.aggregate({ year: year, quarter: quarter })
+      return (year, quarter) => this.aggregate({ year, quarter });
+      // (y, q) => this.$store.getters.summary(y, q)
+      // return this.$store.getters.len
+    },
+
+    s() {
+      return this.$store.getters.len
+    },
+
+
+    course_grades_() {
+      return this.$store.state.gpaData.course_grades;
+    },
+
+    categories_() {
+      return this.$store.state.gpaData.categories;
+    },
+
+    plannerTable() {
+      return this.$store.state.plannerTable;
     }
   },
 
   methods: {
-    /*
-    totalIn(year, type, period) {
-      const Y = this.course_grades[year];
-      const first = Y[0].reduce((pre, cur) => pre + parseInt(cur[type], 10) || 0, 0);
-      const second = Y[1].reduce((pre, cur) => pre + parseInt(cur[type], 10) || 0, 0);
-
-      return typeof period !== 'undefined' ? (period ? second : first) : first + second;
-    },
-
-    printData() {
-      console.log(this.gpaData);
-    },
-    */
-    loadGPAData(){  
+   
+    // printData() {
+    //   console.log(this.gpaData);
+    // },
+    loadGPAData() {
       try {
-          this.gpaData.course_grades = JSON.parse(gpaData.course_grades);
-          this.gpaData.categories = JSON.parse(gpaData.categories);
-          // console.log("---------Category------")
-          // console.log(category);
-          // console.log("---------Grades------")
-          // console.log(course_grades);
-        } catch(err) {
-          console.log(err);
-        }
+        this.gpaData.categories = this.categories_;
+        this.gpaData.course_grades = this.course_grades_;
+      } catch (err) {
+        console.log(`In loadGPAData(): ${err}`);
+      }
     },
 
     provideFinishedCourseDataByQuarter() {
       const thisYear = new Date().getFullYear();
-      for (let y = parseInt(this.enrollment); y <= thisYear; y++) {
-        
-        this.course_grades[y] = [
-          this.getPlannerFormatCourseData(this.filterBy({quarter: 0, year: y})), 
-          this.getPlannerFormatCourseData(this.filterBy({quarter: 1, year: y}))  
-        ];
+      for (let y = parseInt(this.enrollment, 10); y <= thisYear; y++) {
+        const zenki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 0, year: y })),
+            kouki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 1, year: y }));
+        // console.log(zenki);
 
-        for (let quarter_grades of this.course_grades[y]) {
-          quarter_grades.forEach(e => {console.log(e)});
-        }
+        this.$store.dispatch('addCourses', {
+          year: y,
+          quarter: 0,
+          courses: zenki,
+        })
+
+        this.$store.dispatch('addCourses', {
+          year: y,
+          quarter: 1,
+          courses: kouki,
+        })
       }
     },
 
-    filterQuarter(course_grades, quarter) {
-      if ((typeof course_grades === 'undefined') || (course_grades.length === 0)){
-        console.error("Empty input in <filterQuarter(course_grades)>");
+    /**
+     * This functions filters the given courseGrades 
+     * @params {Array<CourseRecord>} courseGrades - an Array of courseGrades objects
+     * @params {number} quarter - 0: returns 前期, 1: returns 後期
+     * @returns filtered courseGrades specifies by `quarter` parameter
+     */
+    filterQuarter(courseGrades, quarter) {
+      if ((typeof courseGrades === 'undefined') || (courseGrades.length === 0)) {
+        console.error('Empty input in <filterQuarter(course_grades)>');
       }
 
       const FIRSTQUARTER = new Set(['前', '夏学期', '前期集中', '春学期']);
       const SECONDQUARTER = new Set(['後', '秋学期', '後期集中', '冬学期', '通年']);
 
-      const quarterSelector = typeof quarter === 'undefined' ? null : (quarter === 0 ? (q => FIRSTQUARTER.has(q)): (q => SECONDQUARTER.has(q)));
+      const quarterSelector = typeof quarter === 'undefined' ? null : (quarter === 0 ? ((q) => FIRSTQUARTER.has(q)) : ((q) => SECONDQUARTER.has(q)));
 
-      return course_grades.filter(({ quarter }) => quarterSelector(quarter));
+      return courseGrades.filter(({ quarter }) => quarterSelector(quarter));
     },
-    /*
-     * params {Object} obj - expect a filter option object with at most four keys: {quarter, year, evaluation, category}
-     * return {}
+
+    /**
+     * @params {Object} obj - expect a filter option object with at
+     most four keys: {quarter, year, evaluation, category}
+     * @return {}
      */
     filterBy(obj) { // SHOULD BUILD A FILTER FUNCTION INSTEAD OF RETURN A FILTERD OBJECT
-      const __quarter__ = obj['quarter'];
-      const __year__ = obj['year'];
-      const evaluation = obj['evaluation'];
-      const __category__ = obj['category'];
-      // const quarterSelector = typeof __quarter__ === 'undefined' ? null : (__quarter__ === 0 ? (q => this.FIRSTQUARTER.has(q)): (q => this.SECONDQUARTER.has(q)));
-      
-      var res;
+      const __quarter__ = obj.quarter;
+      const __year__ = obj.year;
+      const { evaluation } = obj;
+      const __category__ = obj.category;
+
+      let res;
+      // console.log("----------------IN filter By--------------")
       // console.log(this.gpaData.categories);
       // console.log(this.gpaData.course_grades);
       if (typeof __quarter__ !== 'undefined') {
-        console.log(`Filtering by quarter...`);
+        console.log(`Filtering by quarter... ${__quarter__ ? '後期':'前期'}`);
         // console.log(typeof(this.gpaData.course_grades));
         res = this.filterQuarter(this.gpaData.course_grades, __quarter__);
+        // console.log(res)
       }
 
       if (__year__) {
-        console.log("Filtering by year...");
-        res = res.filter(({ year }) => parseInt(year) === parseInt(__year__));
+        console.log(`Filtering by year... ${__year__}`);
+        res = res.filter(({ year }) => parseInt(year, 10) === parseInt(__year__, 10));
         // console.log(res);
       }
 
       if (evaluation) {
-        console.log("Filtering by grade...");
-        res = res.filter(({ letter_evaluation }) => letter_evaluation === evaluation );
+        // console.log('Filtering by grade...');
+        res = res.filter(({ letter_evaluation }) => letter_evaluation === evaluation);
         // console.log(res);
       }
 
       if (__category__) {
-        console.log("Filtering by ...");
-        res = res.filter(({ category }) => category === __category__ );
+        // console.log('Filtering by ...');
+        res = res.filter(({ category }) => category === __category__);
         // console.log(res);
       }
-      
-      
+
       // console.log(res);
-      console.log("Exiting filterBy()...");
+      // console.log('Exiting filterBy()...');
       return res;
     },
 
     getPlannerFormatCourseData(data) {
-      const pick = ({subject, unit, letter_evaluation, gpa}) => ({subject, letter_evaluation, unit, gpa});
-      return data.map(e => pick(e))
+      const pick = ({
+        subject, unit, letter_evaluation, gpa,
+      }) => ({
+        subject, letter_evaluation, unit, gpa,
+      });
+      return data.map((e) => pick(e));
     },
 
-    // Calculate GPA and passed unit base on this.course_grades
+    // Calculate GPA and passed unit base on this.plannerTable
+    /**
+     * 
+     */
     aggregate(obj) {
       // - Not including withdrawn
       const { quarter, year, category } = obj;
-      if (!(year)) console.error("Option is missing `year` key")
-      
-      const LETTER_TO_GPA = {65: 4, 66: 3, 67: 2, 68: 1, 70: 0};
-      const course_grades = typeof quarter === 'undefined' ? this.course_grades[year].flat() : this.course_grades[year][quarter];
-      console.log(course_grades, quarter, year, category)
+      if (!(year)) console.error('Option is missing `year` key');
 
-      var grade_statistics = course_grades
-        .filter(e => [65, 66, 67, 68, 70].includes(e['letter_evaluation'].charCodeAt(0) - 65248)) // Process only A, B, C, D, F courses
-        .filter(e => typeof(category) === 'string' ? e['category'] === category : true)
-        .reduce((agg, e)=>{
-            const unit = parseFloat(e['unit']),
-                letter = e['letter_evaluation'].charCodeAt(0) - 65248,
-                gpa = parseFloat(e['gpa']);
-            if (e['subject'] == '基幹教育セミナー') {
-                // console.log(gpa === 0 && letter === 70);
-            }
-            if (letter === 82) { // == 'R'
-                agg[String.fromCharCode(letter)][0] += unit;
-                agg['passed_units'] += unit;
-            } else if(gpa === 0 && letter === 70){ // == 'F'
-                agg['total_gpa_units'] += unit;
-                agg['F'][0] += unit;
-                // console.log(e['subject'], e['letter_evaluation'])
-            } else if ([65, 66, 67, 68].includes(letter)){ // == 'A, B, C, D'
-                const gpa = unit * LETTER_TO_GPA[letter];
-                agg['total_gpa_units'] += unit;
-                agg['total_gpa'] += gpa;
-                agg['passed_units'] += unit;
-                agg[String.fromCharCode(letter)][0] += unit;
-                agg[String.fromCharCode(letter)][1] += gpa; 
-            }
-            // console.log(e['subject'], String.fromCharCode(letter), letter === 82 ? '-' : letter === 70 ? 0 : unit * letter_to_gpa[letter]);
-            // agg['passed_units'] += unit;
-            // agg['total_gpa'] += parseFloat(curr['gpa']) * unit;
-            return agg 
-      }, {total_gpa_units: 0, passed_units: 0, total_gpa: 0, A: [0, 0], B: [0, 0], C: [0, 0], D: [0,0], F:[0,0], R:[0, 0]})
+      const LETTER_TO_GPA = {
+        65: 4, 66: 3, 67: 2, 68: 1, 70: 0,
+      };
+      const plannerTable = typeof quarter === 'undefined' ? this.plannerTable[year].flat() : this.plannerTable[year][quarter];
+      // console.log(plannerTable, quarter, year, category);
 
-      const avgGPA = (grade_statistics['total_gpa'] / grade_statistics['total_gpa_units']).toFixed(2);
+      const grade_statistics = plannerTable
+        .filter(
+          (e) => [65, 66, 67, 68, 70]
+            .includes(e.letter_evaluation.charCodeAt(0) - 65248),
+        )// Process only A, B, C, D, F courses
+        .filter((e) => (typeof (category) === 'string' ? e.category === category : true))
+        .reduce((agg, e) => {
+          const unit = parseFloat(e.unit);
+          const letter = e.letter_evaluation.charCodeAt(0) - 65248;
+          const gp = parseFloat(e.gpa);
+          if (e.subject === '基幹教育セミナー') {
+            // console.log(gpa === 0 && letter === 70);
+          }
+          if (letter === 82) { // == 'R'
+            agg[String.fromCharCode(letter)][0] += unit;
+            agg.passed_units += unit;
+          } else if (gp === 0 && letter === 70) { // == 'F'
+            agg.total_gpa_units += unit;
+            agg.F[0] += unit;
+            // console.log(e['subject'], e['letter_evaluation'])
+          } else if ([65, 66, 67, 68].includes(letter)) { // == 'A, B, C, D'
+            const totalGpa = unit * LETTER_TO_GPA[letter];
+            agg.total_gpa_units += unit;
+            agg.total_gpa += totalGpa;
+            agg.passed_units += unit;
+            agg[String.fromCharCode(letter)][0] += unit;
+            agg[String.fromCharCode(letter)][1] += totalGpa;
+          }
+          return agg;
+        }, {
+          total_gpa_units: 0,
+          passed_units: 0,
+          total_gpa: 0,
+          A: [0, 0],
+          B: [0, 0],
+          C: [0, 0],
+          D: [0, 0],
+          F: [0, 0],
+          R: [0, 0],
+        });
+
+      const avgGPA = (grade_statistics.total_gpa / grade_statistics.total_gpa_units).toFixed(2);
       // console.log(grade_statistics);
-      return [avgGPA, grade_statistics['passed_units'].toFixed(1)]
+      return [avgGPA, grade_statistics.passed_units.toFixed(1)];
     },
 
     handleCollapseChange(activeNames) {
-      console.log(activeNames)
+      console.log(activeNames);
+    },
+
+    addCourse(year, quarter) {
+      const semName = quarter ? '後期' : '前期';
+      // console.log(`${year} ${semName}`);
+      // console.log(this.plannerTable[year][quarter]);
+      this.$store.dispatch('addCourses', {
+        year,
+        quarter,
+        courses: [
+          { subject: 'English Composition', unit:'2', gpa:'4.0', letter_evaluation: 'A'},  //, unit: 2, gpa: '' 
+          { subject: 'Advanced Linear Algebrea', unit:'2', gpa:'4.0', letter_evaluation: 'A'}, //, unit: 2, gpa: '' 
+        ]
+        })
     }
   },
-    
+
   data() {
     return {
       FIRSTQUARTER: null,
       SECONDQUARTER: null,
-      gpaData: {course_grades:[], categories:[]},
+      gpaData: { course_grades: [], categories: [] },
       enrollment: '2019',
-      course_grades: {},
       activeName: [],
       // EXAMPLE:
       // course_grades: {
