@@ -1,15 +1,16 @@
+<!-- eslint-disable -->
 <template>
   <div>
-    <form-test1></form-test1>
+    <main-layout></main-layout>
     <el-divider></el-divider>
   </div>
 </template>
 <script>
-import FormTest1 from './form/TestFormElements.vue';
+import MainLayout from '@/components/MainLayout.vue';
 
 export default {
   components: {
-    FormTest1,
+    MainLayout,
   },
 
 };

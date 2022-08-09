@@ -18,7 +18,6 @@
           annual units <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{parseFloat(totalIn(enrollment, 'unit')).toFixed(1)}} </b> -->
         </span>       
       </template>
-
       <el-container>
         <el-row :gutter="20" style="min-width:100%">
           <el-col :span="12" style="min-width:50%" v-for="(grades, index) in gpaInYear" :key="index" :name="index">
@@ -36,7 +35,7 @@
                 </span> 
               </div>
               <div>
-                <course-planner-table :grades="grades" :addable="true"></course-planner-table>
+                <academic-planner-table :grades="grades" :addable="true"></academic-planner-table>
                 <div style="margin-top: 10px">
                   <el-button v-if="parseInt(year) == new Date().getFullYear()" @click="addCourse(year, index)">
                     追加 {{s}}
@@ -62,13 +61,12 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable */
 
-import PlannerCard from '../card/PlannerCard.vue';
-import CoursePlannerTable from '../table/CoursePlannerTable.vue';
-import { toRef } from 'vue';
+import PlannerCard from './card/PlannerCard.vue';
+import AcademicPlannerTable from './AcademicPlannerTable.vue';
 
 export default {
   components: {
-    PlannerCard, CoursePlannerTable,
+    PlannerCard, AcademicPlannerTable,
   },
 
   created() {
@@ -100,7 +98,6 @@ export default {
       return this.$store.getters.len
     },
 
-
     course_grades_() {
       return this.$store.state.gpaData.course_grades;
     },
@@ -114,8 +111,7 @@ export default {
     }
   },
 
-  methods: {
-   
+  methods: { 
     // printData() {
     //   console.log(this.gpaData);
     // },

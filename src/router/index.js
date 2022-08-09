@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'lab',
-    component: () => import('../views/element_ui_lab/LabMain.vue'),
+    component: () => import('../views/Main.vue'),
   },
 ]
 

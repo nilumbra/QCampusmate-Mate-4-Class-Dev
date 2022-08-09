@@ -144,15 +144,8 @@ const requirement = {
           freshman: 6.5,
           unit: 12.5
         }
-      ],
-
-        
-        ],
-
-        
-      ],
+      ],    
     },
-
     "専攻教育科目": { 
         label: '専攻教育科目',
         children: [

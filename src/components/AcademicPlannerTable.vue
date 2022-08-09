@@ -61,6 +61,7 @@
 </style>
 <script>
 export default {
+  name: 'AcadedmicPlannerTable',
   props: ['grades', 'addable'],
   methods: {
     subjectCellFormatter(row, column, cellValue) {

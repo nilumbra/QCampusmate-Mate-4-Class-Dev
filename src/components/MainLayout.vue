@@ -11,15 +11,15 @@
               <!-- <el-tag size="mini" type="info" color="#f6a3b1" effect="dark" ><b> Info </b>
               </el-tag>&nbsp; -->
       </el-header>
-      <course-tree>
-      </course-tree>
+      <deg-req-checker>
+      </deg-req-checker>
     </el-aside>
     <el-container>
       <el-header>
         <h2> Academic Planner </h2>
       </el-header>
       <el-main>
-        <planner-quarter-collapse></planner-quarter-collapse>
+        <planner-year-collapse></planner-year-collapse>
       </el-main>
     </el-container>
   </el-container>
@@ -31,14 +31,14 @@
 }
 </style>
 <script>
-import CourseTree from '../tree/CourseTree.vue';
+import DegReqChecker from './DegReqChecker.vue';
 // import PlannerCard from '../card/PlannerCard.vue';
-import PlannerQuarterCollapse from '../collapse/PlannerQuarterCollapse.vue';
+import PlannerYearCollapse from './PlannerYearCollapse.vue';
 
 /* eslint-disable */
 export default {
   components: {
-    CourseTree, /* PlannerCard, */ PlannerQuarterCollapse,
+    DegReqChecker, /* DRCTree */ PlannerYearCollapse, /* AP */
   },
 
   computed: {
