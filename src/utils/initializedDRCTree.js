@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 /**
  * Assume at the invokation, the function will be provided
- * with a context <this> whose `meta` and `data` properties are expected to be initialized the way this function will do
+ * with a context <this> whose `meta` and `data` properties are expected to be initialized as specified in 卒業要件データ定義
+ * 
  * @params {Object} degree_requirement - see degree_requirement.js
  * @returns void
  */
-  function initializeRequirementTree(degree_requirement) {
+function initializeRequirementTree(degree_requirement) {
   const seen = new Set();
   const course_grades = this.course_grades;
   /**
@@ -151,7 +152,7 @@
 
   /** This function returns a matcher function that matches all elective courses that are supposed to be categorized under <curr_node>
    * @params {Object} curr_node - Assume to be a leaf node in DegReq tree
-   * @returns {Function} - A filter function expected by courser_grades.filter call. A call with this returned function will find all course that fall under this category
+   * @returns {Function} - A filter expected by courser_grades.filter call. A call with this fill will find all course that fall under <curr_node>
    *
    */
   function createCourseCategoryMatcher(curr_node) {

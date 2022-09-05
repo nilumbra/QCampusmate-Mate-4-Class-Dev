@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 // Grade Dashboard Component table
+
+// A Vue instance option defined for displaying university course grade records in table format
 export default {
     props: {
         data: Object,
