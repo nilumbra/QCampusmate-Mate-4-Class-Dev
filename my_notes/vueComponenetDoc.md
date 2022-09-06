@@ -2,19 +2,6 @@
 This documentation provides a brief description of their UI behavior for each Vue Component.
 
 - PlannerQuarterCollapse
-<!-- Private methods -->
-```js
-function getPlannerFormatCourseData(courses: CourseData): PlannerFormatCourseData
-```
-
-```js
-function provideFinishedCourseDataByQuarter();
-
-```
-
-
-
-getPlannerFormatCourseData
 
 - TestFormElements
 - CoursePlannerTable 

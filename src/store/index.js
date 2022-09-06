@@ -4,8 +4,8 @@ import ExampleDgreeRequirement from '@/Testdata/degree_requirements.json';
 import gpaData from '@/Testdata/example_course_data2.json';
 
 Vue.use(Vuex);
-// gpaData.course_grades = gpaData.course_grades;
-// gpaData.categories = gpaData.categories;
+gpaData.course_grades = JSON.parse(gpaData.course_grades);
+gpaData.categories = JSON.parse(gpaData.categories);
 
 export default new Vuex.Store({
   state: {
