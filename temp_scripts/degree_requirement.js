@@ -40,7 +40,7 @@ const requirement = {
           unit: 12,
           children: [
             {
-              label: "韓国語"
+              label: "韓国語",
               grpKey: "KED-LCB",
               compulsory: true,
               elective: true,
@@ -49,7 +49,7 @@ const requirement = {
             },
 
             {
-              label: "英語"
+              label: "英語",
               grpKey: "KED-LCB",
               compulsory: true,
               elective: true,

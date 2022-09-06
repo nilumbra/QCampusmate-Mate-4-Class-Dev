@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-for -->
 <!-- eslint-disable no-trailing-spaces -->
 <!-- eslint-disable vue/no-unused-components -->
 <!-- eslint-disable max-len -->
@@ -5,19 +6,19 @@
   <el-collapse v-model="activeName" @change="handleCollapseChange">
     <!-- {{course_grades}} -->
     <el-collapse-item  v-for="(gpaInYear, year, index) in plannerTable" :name="year" :key="index">
+      <!-- Summary: { gpa, annual-units } for one year's grade -->
       <template slot="title">
-        <span>
-          {{`${parseInt(year)} - ${parseInt(year) + 1}`}}
-          &nbsp;
-          <template v-for="(item, index) in summary(year)">
-            {{ index ? 'annual units' : 'gpa' }}
-            <el-tag :key="index" size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '-----'}} </b>
-            </el-tag>&nbsp;
-          </template>
+        {{`${parseInt(year)} - ${parseInt(year) + 1}`}} &nbsp;
+        <span v-for="(item, index) in summary(year)" :key="index">
+          {{ ['gpa', 'annual units'][index] }}
+          <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '-----'}} </b>
+          </el-tag> &nbsp;
           <!-- gpa 
           annual units <el-tag size="mini" type="info" color="#428bca" effect="dark" class="unit"><b> {{parseFloat(totalIn(enrollment, 'unit')).toFixed(1)}} </b> -->
         </span>       
       </template>
+
+      <!-- An el-table for one year's grade -->
       <el-container>
         <el-row :gutter="20" style="min-width:100%">
           <el-col :span="12" style="min-width:50%" v-for="(grades, index) in gpaInYear" :key="index" :name="index">
@@ -27,7 +28,7 @@
                 <span>
                   {{ parseInt(index) ? 'Second Semester' : 'First Semester'}}
                   &nbsp;
-                  <template v-for="(item, index) in summary(year, index)">
+                  <template v-for="(item, index) in summary(year, index)" >
                     {{ index ? 'semeter units' : 'gpa' }}
                     <el-tag :key="index" size="mini" type="info" color="#f6a3b1" effect="dark" class="unit"><b> {{(item).toString() !== 'NaN' ? item : '-----'}} </b>
                     </el-tag>&nbsp;
@@ -90,8 +91,6 @@ export default {
   computed: {
     summary() {
       return (year, quarter) => this.aggregate({ year, quarter });
-      // (y, q) => this.$store.getters.summary(y, q)
-      // return this.$store.getters.len
     },
 
     s() {
@@ -127,8 +126,9 @@ export default {
     provideFinishedCourseDataByQuarter() {
       const thisYear = new Date().getFullYear();
       for (let y = parseInt(this.enrollment, 10); y <= thisYear; y++) {
-        const zenki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 0, year: y })),
-            kouki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 1, year: y }));
+        const zenki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 0, year: y }));
+
+        const kouki = this.getPlannerFormatCourseData(this.filterBy({ quarter: 1, year: y }));
         // console.log(zenki);
 
         this.$store.dispatch('addCourses', {
@@ -208,7 +208,11 @@ export default {
       // console.log('Exiting filterBy()...');
       return res;
     },
-
+    /**
+     * @params {Object} obj - expect a CourseData object containing at
+     * least these four keys: {subject, letter_evaluation, unit, gpa}
+     * @return {Array<PlannerFormatCourseData>}
+     */
     getPlannerFormatCourseData(data) {
       const pick = ({
         subject, unit, letter_evaluation, gpa,
