@@ -23,19 +23,19 @@ function initializeRequirementTree(degree_requirement) {
     // console.log(`${course_record.subject} has ${course_node.units} units; Setting ${course_record.subject} to be a leaf node of ${curr_node.label}`)
 
     // Passed/Not passed detection
-    if (course_record.letter_evaluation.charCodeAt(0) - 65248 === 70) {
+    if (course_record.letter_evaluation.charCodeAt(0) === 70) {
       // If 'F', don't increment the passed unit
       course_node.status = -2;
     } else if ([65, 66, 67, 68, 82] // 'A', 'B', 'C', 'D', 'R'
-      .includes(course_record.letter_evaluation.charCodeAt(0) - 65248)) {
-      if (course_record.letter_evaluation.charCodeAt(0) - 65248 === 68) {
+      .includes(course_record.letter_evaluation.charCodeAt(0))) {
+      if (course_record.letter_evaluation.charCodeAt(0) === 68) {
         // Mark 'D' courses as retakable;
         course_node.status = 1;
       } else {
         course_node.status = 2;
       }
     } else if (course_record.letter_evaluation.
-    charCodeAt(0) - 65248 === 87) { // W
+    charCodeAt(0) === 87) { // W
       course_node.status = -1;
     } else if (course_record.unit === '' && course_record.last_updated === ''){ // ongoing course
       course_node.status = 0;
@@ -134,7 +134,7 @@ function initializeRequirementTree(degree_requirement) {
 
     for (const index of coursesInCategory) {
       const { unit, letter_evaluation} = course_grades[index];
-      if (letter_evaluation.charCodeAt(0) - 65248 === 70 ) {
+      if (letter_evaluation.charCodeAt(0) === 70 ) {
         setDRCTreeNode(course_grades[index], index, curr_node)
       } else {
         unit_sum += unit;

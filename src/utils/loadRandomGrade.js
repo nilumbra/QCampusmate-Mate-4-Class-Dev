@@ -13,54 +13,35 @@ loadBtn.addEventListener('click', async () => {
   });
 });
 
-function load() {
+function loadRandomizedGrade() {
   function randn_bm() {
     var u = 0, v = 0;
     while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
     while(v === 0) v = Math.random();
     return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
-}
+  }
 
   function rand_grade() {
     const rand = randn_bm();
     var gp;
     if(rand > -0.3 && rand < 0.3) {
-      gp = '3.0';
+      gp = 3;
     } else if (rand > -1.2 && rand <= -0.3 || rand >= 0.3 && rand < 1.2){
-      gp = '4.0';
+      gp = 4;
     } else if (rand > -2 && rand <= -1.2 || rand >= 1.2 && rand < 2) {
-      gp = '2.0'; 
+      gp = 2; 
     } else if (rand > -2.5 && rand <= -2 || rand >= 2 && rand < 2.5) {
-      gp = '1.0';
+      gp = 1;
     } else {
-      gp = '0.0'
+      gp = 0
     }
     return gp;
   }
 
   function gp_to_letter(gp) {
-    const MAP = {'0': 'Ｆ', '1.0': 'Ｄ', '2.0': 'Ｃ', '3.0':'Ｂ', '4.0': 'Ａ'};
+    const MAP = {0: 'F', 1: 'D', 2: 'C', 3:'B', 4: 'A'};
     return MAP[gp];
   }
-
-
-  ////// Data Structure for holding a course's gpa and its administrative information
-  class CourseGradeEntry {
-    constructor (category, subject, unit, letter_evaluation, gpa, year, quarter, subject_number, course_id, prinstructor, last_updated) {
-        this.category = category;
-        this.subject = subject;
-        this.unit = unit;
-        this.letter_evaluation = letter_evaluation; // = { A, B, C, D, F, R }
-        this.gpa = gpa; // This might not be a number
-        this.year = year; 
-        this.quarter = quarter;
-        this.subject_number = subject_number;
-        this.course_id = course_id;
-        this.prinstructor = prinstructor;
-        this.last_updated = last_updated;
-    }
-  }
-
 
   const table = document.querySelector('table.list'),
       tBody = table.tBodies[0],
@@ -97,11 +78,11 @@ function load() {
         [...rows[i].cells].forEach((item, index) => {
           if (index === 3) {
             let gp = item.textContent.trim();
-            if (!Number.isNaN(parseFloat(gp))) {
+            if (!Number.isNaN(parseFloat(gp))) { // if gp is a number
               let fake_gp = rand_grade();
               courseRecord[theadNames[index]] = fake_gp;
               courseRecord['letter_evaluation'] = gp_to_letter(fake_gp);
-            } else {
+            } else { // if gp is empty or non-number representation
               courseRecord[theadNames[index]] = item.textContent.trim();
             }
           } else {

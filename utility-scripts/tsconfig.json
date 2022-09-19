@@ -1,0 +1,16 @@
+{
+  // "files": [],
+  "include": ["*.ts", "*/*.ts"], 
+  "compilerOptions": {
+    "outDir": "./js",
+    "target": "es2016", 
+    "module": "commonjs", 
+    "esModuleInterop": true,                         
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "strict": false, 
+    "skipLibCheck": false,
+    "noImplicitAny": false,
+    "strictNullChecks": true
+  }
+}

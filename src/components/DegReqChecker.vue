@@ -1,6 +1,6 @@
 <template>
 <el-tree
-  indent="6"
+  :indent="6"
   :data='data'
   :props="defaultProps"
   :render-content="renderContent"

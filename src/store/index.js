@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ExampleDgreeRequirement from '@/Testdata/degree_requirements.json';
-import gpaData from '@/Testdata/example_course_data2.json';
+import gpaData from '@/Testdata/example_course_data_half_size.json';
 
 Vue.use(Vuex);
 // gpaData.course_grades = gpaData.course_grades;

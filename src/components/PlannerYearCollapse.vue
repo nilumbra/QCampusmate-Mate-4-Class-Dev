@@ -158,7 +158,7 @@ export default {
 
       const FIRSTQUARTER = new Set(['前', '夏学期', '前期集中', '春学期']);
       const SECONDQUARTER = new Set(['後', '秋学期', '後期集中', '冬学期', '通年']);
-
+      
       const quarterSelector = typeof quarter === 'undefined' ? null : (quarter === 0 ? ((q) => FIRSTQUARTER.has(q)) : ((q) => SECONDQUARTER.has(q)));
 
       return courseGrades.filter(({ quarter }) => quarterSelector(quarter));
@@ -240,12 +240,12 @@ export default {
       const grade_statistics = plannerTable
         .filter(
           (e) => [65, 66, 67, 68, 70]
-            .includes(e.letter_evaluation.charCodeAt(0) - 65248),
+            .includes(e.letter_evaluation.charCodeAt(0)),
         )// Process only A, B, C, D, F courses
         .filter((e) => (typeof (category) === 'string' ? e.category === category : true))
         .reduce((agg, e) => {
           const unit = parseFloat(e.unit);
-          const letter = e.letter_evaluation.charCodeAt(0) - 65248;
+          const letter = e.letter_evaluation.charCodeAt(0);
           const gp = parseFloat(e.gpa);
           if (e.subject === '基幹教育セミナー') {
             // console.log(gpa === 0 && letter === 70);
