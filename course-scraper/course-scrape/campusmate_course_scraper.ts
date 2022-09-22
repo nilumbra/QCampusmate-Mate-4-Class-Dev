@@ -37,9 +37,9 @@ const log = console.log;
  * @param data 
  * @returns Course
  */
-function courseSyllabusScrapeFn(courseid: number, data: string | cheerio.AnyNode | cheerio.AnyNode[] | Buffer){
+function courseSyllabusScrapeFn(courseid: number, data: string | cheerio.AnyNode | cheerio.AnyNode[] | Buffer): Course | null{
   // returns a course record object
-  log('Reading in course data. Course ID:', courseid);
+  log(`Reading in course data. Course ID:${courseid}`);
   if (!data) throw Error(`Cannot get document for course ${courseid}! Check url first.`)
   const $ = cheerio.load(data);
 
@@ -73,6 +73,7 @@ function courseSyllabusScrapeFn(courseid: number, data: string | cheerio.AnyNode
   }
   log('CourseMain done building ✅\n');
 
+  /** 
   // get CourseDetail or Syllabus
   const tables = $("table.syllabus_detail", detail);
   detail = tables[0];
@@ -134,27 +135,38 @@ function courseSyllabusScrapeFn(courseid: number, data: string | cheerio.AnyNode
       courseDetail!.setKV(childrenTds.first().text().trim(), childrenTds.last(), $)
     }
   }
+  */
 
-  course = new Course(courseMain, courseDetail);
+  course = new Course(courseMain, undefined);
   log(JSON.stringify(course, null, 2));
   log('\n');
-
-  return JSON.stringify(course, null, 2)
+  // JSON.stringify(course, null, 2)
+  return course
 }
 
 
-async function main(cid: number){
-  const testURL = `https://ku-portal.kyushu-u.ac.jp/campusweb/slbssbdr.do?value(risyunen)=2021&value(semekikn)=1&value(kougicd)=${cid}&value(crclumcd)=ZZ`;
+
+async function fetchOne(cid: number, done: boolean): Promise<{ value: Course | null | undefined, done: boolean }> {
+  const courseURL = `https://ku-portal.kyushu-u.ac.jp/campusweb/slbssbdr.do?value(risyunen)=2021&value(semekikn)=1&value(kougicd)=${cid}&value(crclumcd)=ZZ`;
                   
-  return await axios({
-    method:'get',
-    url: testURL
-  }).then((res: { data: string | cheerio.AnyNode | cheerio.AnyNode[] | Buffer; }) => {
-    return courseSyllabusScrapeFn(cid, res.data);
-  }).catch(err=>{
-    log(err)
+  return new Promise((resolve, reject) => {
+    axios({
+      method:'get',
+      url: courseURL
+    })
+    .then((res: { data: string | cheerio.AnyNode | cheerio.AnyNode[] | Buffer; }) => { 
+      resolve(
+        {
+          value: done ? undefined: courseSyllabusScrapeFn(cid, res.data),
+          done: done
+        })
+    })
+    .catch((err)=>{
+      reject({value: err, done: done})
+    })  
   })
 }
+  
 
 const testCourseId = [
   /*
@@ -178,9 +190,72 @@ const testCourseId = [
   21705030 // 2021 Design Pitching Skills 
 ]
 
-Promise.allSettled(testCourseId.map(cid => main(cid)))
-      .then(() => {
-        log(CourseMain.subjectCategoryMap);
-      })
-// main();
+import courseids2021 from '../../local-files/course-id-2021.json';
 
+
+// const school = 'KEG'; //'KEG' 'ECO' 'ENG' 'EDU-TEP' 'DES' 
+function scrapeAllCourseDataIn2022ForOneSchool(school: string) {
+  const coursesIterable = { 
+    [Symbol.asyncIterator]() {
+      let i = 0;
+      return {
+        async next() {
+          const done = i === courseids2021[school].length; // iterable is able to produce next value
+          log(`# of processing: ${i + 1}, start...`)
+          try {
+            const result = await fetchOne(courseids2021[school][i++], done)
+            return result;
+          } catch (err) {
+            return { value: err, done: done }
+          }
+        }
+      };
+    }
+  };
+  
+  
+  (async () => {
+    var courseData: Array<Course | null | undefined> = [];
+
+    var i = 0;
+    for await (const course of coursesIterable) {
+      courseData.push(course);
+      if (i++ >= 200) {
+        const fn = `../data/${school}-2021-courses-augmented-${Math.floor(i / 200)}.json`;
+        log(`Saving results to file: ${fn}`);
+        fs.writeFileSync(fn, JSON.stringify(courseData, null, 2));
+        log(`Saved ${i} courses ✅`);
+
+        i = 0;
+        courseData = [];
+      }
+    }
+    log(CourseMain.subjectCategoryMap);
+  
+    
+    
+    log(`Saved ${courseData.length} courses in total ✅`)
+  })();
+}
+
+
+function useSTDIN(cb) {
+  process.stdin.setEncoding('utf8');
+  var lines: string[] = []; 
+  var reader = require('readline').createInterface({
+    input: process.stdin,
+  });
+  reader.on('line', (line: string) => {
+    //改行ごとに'line'イベントが発火される
+    lines.push(line); //ここで、lines配列に、標準入力から渡されたデータを入れる
+  });
+  reader.on('close', () => {
+  //標準入力のストリームが終了すると呼ばれる
+  const input = lines.join('\n');
+
+  cb(input)
+  });
+}
+
+
+useSTDIN(scrapeAllCourseDataIn2022ForOneSchool);

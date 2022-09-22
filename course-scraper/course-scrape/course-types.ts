@@ -23,11 +23,7 @@ type Major = 'INF' | string | undefined;
 type SubjectCode = string | undefined; 
 ///////////////////////////////////////////////////
 // 授業科目区分
-type Category = 
-'総合科目' |
-'専攻教育科目  /  Specialized Courses'|
-string |
-undefined;
+type Category = string | undefined;  // e.g. '総合科目', '専攻教育科目  /  Specialized Courses'
 
 var numberLinkCodeToCategory = {
   'KED-KES': ['基幹教育セミナー'],
@@ -150,6 +146,8 @@ export class CourseMain {
           break;
     
           case "授業科目区分": {
+            this.category = value as Category;
+            
             let schoolMajor = `${this.school}-${this.major}`;
             if (schoolMajor in CourseMain.subjectCategoryMap) { 
               if (!CourseMain.subjectCategoryMap[schoolMajor].includes(value)){ // 新しい専攻(学部+専攻)-授業科目区分を発見する場合、専攻-授業科目区分Hashmapにデータを追加
@@ -627,6 +625,16 @@ export class Course {
   constructor(courseMain: CourseMain, detail: Syllabus | CourseDetail | undefined){
     this.main = courseMain;
     this.detail = detail;
+  }
+
+  // Prepare the course for insertion
+  objectMapperToRecord() {
+
+  }
+
+  static insert_all(attributes: Course[]) {
+    // if the course is cross-listed, then 
+
   }
 }
 

@@ -80,6 +80,7 @@ class CourseMain {
                         this.updated_at = new Date(value);
                         break;
                     case "授業科目区分": {
+                        this.category = value;
                         let schoolMajor = `${this.school}-${this.major}`;
                         if (schoolMajor in CourseMain.subjectCategoryMap) {
                             if (!CourseMain.subjectCategoryMap[schoolMajor].includes(value)) { // 新しい専攻(学部+専攻)-授業科目区分を発見する場合、専攻-授業科目区分Hashmapにデータを追加
@@ -452,6 +453,12 @@ class Course {
     constructor(courseMain, detail) {
         this.main = courseMain;
         this.detail = detail;
+    }
+    // Prepare the course for insertion
+    objectMapperToRecord() {
+    }
+    static insert_all(attributes) {
+        // if the course is cross-listed, then 
     }
 }
 exports.Course = Course;
