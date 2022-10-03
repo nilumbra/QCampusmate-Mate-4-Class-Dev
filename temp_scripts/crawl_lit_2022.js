@@ -1,7 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
-const http = require('http');
 const fs = require('fs');
 
 const log = console.log;
@@ -32,6 +31,8 @@ async function getLit2022Courses() {
     responseType: 'arraybuffer'
   })
 
+
+  // Convert decode binary arraybuffer into HTML string with SHIFT-JIS 
   const body = iconv.decode(Buffer.from(res.data), 'windows-31j');
   const $ = cheerio.load(body);
 
@@ -54,8 +55,6 @@ async function getLit2022Courses() {
 function parseCourse(body) {
   // get html
   const $ = cheerio.load(body);
-
-  const info = [];
 
   // left small
   var school, gakka, course, major, unit,

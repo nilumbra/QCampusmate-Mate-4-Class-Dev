@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+/local-files
+.ipynb_checkpoints/
 
 # local env files
 .env.local
