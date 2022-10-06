@@ -1,4 +1,5 @@
 # QCampusmate-Mate-4-Class-Dev
+> **This repository will be archived by Oct 12, 2022.**
 
 ## 卒業単位自動計算システム
 
