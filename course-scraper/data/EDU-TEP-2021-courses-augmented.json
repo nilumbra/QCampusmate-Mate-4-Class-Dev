@@ -1,0 +1,1656 @@
+[
+  {
+    "main": {
+      "id": 21075055,
+      "name": "英語科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2329"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "津田　晶子"
+      ],
+      "updated_at": "2021-09-06T19:30:37.261Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "金曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21075011,
+      "name": "英語科指導法Ⅳ",
+      "numberlinks": [
+        "EDU-TEP2330J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2330J",
+      "instructors": [
+        "津田　晶子"
+      ],
+      "updated_at": "2021-03-25T20:22:31.303Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "金曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074006,
+      "name": "教育課程経営・行政論",
+      "numberlinks": [
+        "EDU-TEP1203J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1203J",
+      "instructors": [
+        "江口　潔",
+        "木村　拓也"
+      ],
+      "updated_at": "2021-04-03T04:25:29.182Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "平成29年度以前入学者",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074002,
+      "name": "教育課程論",
+      "numberlinks": [
+        "EDU-TEP2342J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2342J",
+      "instructors": [
+        "江口　潔"
+      ],
+      "updated_at": "2021-04-03T04:21:52.066Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "春学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074003,
+      "name": "教育課程論",
+      "numberlinks": [
+        "EDU-TEP2342J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2342J",
+      "instructors": [
+        "江口　潔"
+      ],
+      "updated_at": "2021-04-03T04:22:29.070Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "夏学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072004,
+      "name": "教育原論",
+      "numberlinks": [
+        "EDU-TEP1201J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1201J",
+      "instructors": [
+        "藤田　雄飛"
+      ],
+      "updated_at": "2021-06-08T08:50:24.698Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "平成29年度以前入学者",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "火曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072002,
+      "name": "教育原論Ⅰ",
+      "numberlinks": [
+        "EDU-TEP1205J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1205J",
+      "instructors": [
+        "藤田　雄飛",
+        "野々村　淑子"
+      ],
+      "updated_at": "2021-06-08T08:27:53.405Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "春学期",
+      "day_time": [
+        [
+          "火曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072003,
+      "name": "教育原論Ⅱ",
+      "numberlinks": [
+        "EDU-TEP1206J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1206J",
+      "instructors": [
+        "藤田　雄飛"
+      ],
+      "updated_at": "2021-06-08T08:48:40.190Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "夏学期",
+      "day_time": [
+        [
+          "火曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079003,
+      "name": "教育実習Ⅰ",
+      "numberlinks": [
+        "EDU-TEP3502J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "3502J",
+      "instructors": [
+        "伊藤　崇達",
+        "江口　潔"
+      ],
+      "updated_at": "2021-06-08T08:56:30.654Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "通年集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-"
+    }
+  },
+  {
+    "main": {
+      "id": 21079002,
+      "name": "教育実習研究",
+      "numberlinks": [
+        "EDU-TEP3501J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "3501J",
+      "instructors": [
+        "伊藤　崇達"
+      ],
+      "updated_at": "2021-05-26T02:01:44.611Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部4年（平成29年度以前入学）",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "通年集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079001,
+      "name": "教育実習指導",
+      "numberlinks": [
+        "EDU-TEP3504J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "3504J",
+      "instructors": [
+        "伊藤　崇達"
+      ],
+      "updated_at": "2021-05-26T02:01:08.723Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部4年（平成30年度入学者）",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "通年集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079004,
+      "name": "教育実習Ⅱ",
+      "numberlinks": [
+        "EDU-TEP3503J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "3503J",
+      "instructors": [
+        "伊藤　崇達",
+        "江口　潔"
+      ],
+      "updated_at": "2021-06-08T08:57:09.776Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "通年集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-"
+    }
+  },
+  {
+    "main": {
+      "id": 21074004,
+      "name": "教育社会・制度論",
+      "numberlinks": [
+        "EDU-TEP1209J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1209J",
+      "instructors": [
+        "木村　拓也"
+      ],
+      "updated_at": "2021-04-01T12:39:42.097Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "春学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074005,
+      "name": "教育社会・制度論",
+      "numberlinks": [
+        "EDU-TEP1209J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1209J",
+      "instructors": [
+        "木村　拓也"
+      ],
+      "updated_at": "2021-04-01T12:40:15.757Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "夏学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079059,
+      "name": "教育相談Ⅰ",
+      "instructors": [
+        "姫島　源太郎"
+      ],
+      "updated_at": "2021-10-13T10:02:15.468Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079060,
+      "name": "教育相談Ⅱ",
+      "instructors": [
+        "姫島　源太郎"
+      ],
+      "updated_at": "2021-10-13T10:03:11.967Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079027,
+      "name": "教育方法技術指導法",
+      "numberlinks": [
+        "EDU-TEP2341J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2341J",
+      "instructors": [
+        "瀬戸崎　典夫"
+      ],
+      "updated_at": "2021-09-07T07:19:01.114Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073003,
+      "name": "教職教育心理学",
+      "numberlinks": [
+        "EDU-TEP1202J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1202J",
+      "instructors": [
+        "伊藤　崇達"
+      ],
+      "updated_at": "2021-06-08T08:52:45.378Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073001,
+      "name": "教職教育心理学Ⅰ",
+      "numberlinks": [
+        "EDU-TEP1207J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1207J",
+      "instructors": [
+        "伊藤　崇達"
+      ],
+      "updated_at": "2021-06-08T08:51:49.830Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "春学期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073002,
+      "name": "教職教育心理学Ⅱ",
+      "numberlinks": [
+        "EDU-TEP1208J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1208J",
+      "instructors": [
+        "伊藤　崇達"
+      ],
+      "updated_at": "2021-06-08T08:52:22.667Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "夏学期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079058,
+      "name": "教職実践演習",
+      "numberlinks": [
+        "EDU-TEP3601J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "3601J",
+      "instructors": [
+        "江口　潔",
+        "伊藤　崇達",
+        "鈴木　篤"
+      ],
+      "updated_at": "2021-09-13T08:11:56.245Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071003,
+      "name": "教職論",
+      "numberlinks": [
+        "EDU-TEP1101J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1101J",
+      "instructors": [
+        "伊藤　友子"
+      ],
+      "updated_at": "2021-04-07T05:20:40.751Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "平成29年度以前入学者",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "月曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071001,
+      "name": "教職論Ⅰ",
+      "numberlinks": [
+        "EDU-TEP1102J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1102J",
+      "instructors": [
+        "伊藤　友子"
+      ],
+      "updated_at": "2021-04-07T05:16:54.009Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "春学期",
+      "day_time": [
+        [
+          "月曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071002,
+      "name": "教職論Ⅱ",
+      "numberlinks": [
+        "EDU-TEP1103J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1103J",
+      "instructors": [
+        "伊藤　友子"
+      ],
+      "updated_at": "2021-04-07T05:18:44.089Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "夏学期",
+      "day_time": [
+        [
+          "月曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071013,
+      "name": "国語科指導法Ⅳ",
+      "numberlinks": [
+        "EDU-TEP2304J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2304J",
+      "instructors": [
+        "前田　眞證"
+      ],
+      "updated_at": "2021-04-08T05:43:11.416Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "月曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072010,
+      "name": "社会・公民科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2309J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2309J",
+      "instructors": [
+        "江口　厚仁"
+      ],
+      "updated_at": "2021-06-08T09:02:28.848Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "火曜日",
+          "２時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073056,
+      "name": "社会・公民科指導法Ⅱ",
+      "numberlinks": [
+        "EDU-TEP2310"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "鎌田　裕文"
+      ],
+      "updated_at": "2021-08-28T14:28:22.855Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072020,
+      "name": "社会・地理歴史科指導法Ⅱ",
+      "numberlinks": [
+        "EDU-TEP2308J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2308J",
+      "instructors": [
+        "佐長　健司"
+      ],
+      "updated_at": "2021-06-08T08:39:30.222Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "火曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071061,
+      "name": "社会科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2305J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2305J",
+      "instructors": [
+        "蓮見　二郎"
+      ],
+      "updated_at": "2021-09-05T11:28:45.427Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "月曜日",
+          "４時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072021,
+      "name": "情報科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2315J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2315J",
+      "instructors": [
+        "田上　大助"
+      ],
+      "updated_at": "2021-05-11T01:29:32.901Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "火曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079024,
+      "name": "人権教育Ⅱ",
+      "numberlinks": [
+        "EDU-TEP1211J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1211J",
+      "instructors": [
+        "前田　隆夫"
+      ],
+      "updated_at": "2021-04-12T13:37:38.439Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074052,
+      "name": "進路指導論",
+      "numberlinks": [
+        "EDU-TEP1405"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "木村　拓也"
+      ],
+      "updated_at": "2021-09-24T09:37:10.456Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "秋学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079068,
+      "name": "数学科指導法Ⅰ",
+      "instructors": [
+        "岩田　耕司"
+      ],
+      "updated_at": "2021-12-12T07:28:43.638Z",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079063,
+      "name": "スクールカウンセリング",
+      "numberlinks": [
+        "EDU-TEP1402J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1402J",
+      "instructors": [
+        "姫島　源太郎"
+      ],
+      "updated_at": "2021-10-13T10:04:36.668Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部4年（平成２９年度以前入学者）",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079061,
+      "name": "スクールカウンセリングⅠ",
+      "numberlinks": [
+        "EDU-TEP1406J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1406J",
+      "instructors": [
+        "姫島　源太郎"
+      ],
+      "updated_at": "2021-10-13T10:04:01.430Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部４年（平成３０年度入学者）",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079062,
+      "name": "スクールカウンセリングⅡ",
+      "numberlinks": [
+        "EDU-TEP1407J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "1407J",
+      "instructors": [
+        "姫島　源太郎"
+      ],
+      "updated_at": "2021-10-13T10:04:19.885Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部４年（平成３０年度入学者）",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073051,
+      "name": "生徒指導論Ⅰ",
+      "numberlinks": [
+        "EDU-TEP1403"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "西郡　大"
+      ],
+      "updated_at": "2021-12-13T07:32:32.778Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "秋学期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073052,
+      "name": "生徒指導論Ⅱ",
+      "numberlinks": [
+        "EDU-TEP1404"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "西郡　大"
+      ],
+      "updated_at": "2021-12-13T07:33:02.542Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "冬学期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21074053,
+      "name": "総合的な学習の時間の指導",
+      "instructors": [
+        "上原　洋祐"
+      ],
+      "updated_at": "2021-11-05T01:06:46.257Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年（平成３１年度以降入学者）",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "冬学期",
+      "day_time": [
+        [
+          "木曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073006,
+      "name": "中国語科指導法Ⅱ",
+      "instructors": [
+        "種村　由季子"
+      ],
+      "updated_at": "2021-04-14T02:54:53.765Z",
+      "category": "-",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "水曜日",
+          "２時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079022,
+      "name": "道徳教育指導法Ⅱ",
+      "numberlinks": [
+        "EDU-TEP2344J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2344J",
+      "instructors": [
+        "山岸　賢一郎"
+      ],
+      "updated_at": "2021-07-30T08:34:43.041Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079023,
+      "name": "道徳教育指導法",
+      "numberlinks": [
+        "EDU-TEP2339J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2339J",
+      "instructors": [
+        "山岸　賢一郎"
+      ],
+      "updated_at": "2021-07-30T08:40:37.494Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "平成29年度以前入学者",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079021,
+      "name": "道徳教育指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2343J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2343J",
+      "instructors": [
+        "山岸　賢一郎"
+      ],
+      "updated_at": "2021-07-30T08:13:57.202Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079025,
+      "name": "特別支援教育Ⅰ",
+      "numberlinks": [
+        "-"
+      ],
+      "instructors": [
+        "小澤　永治"
+      ],
+      "updated_at": "2021-08-18T01:23:53.906Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年・学部3年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079026,
+      "name": "特別支援教育Ⅱ",
+      "numberlinks": [
+        "-"
+      ],
+      "instructors": [
+        "小澤　永治"
+      ],
+      "updated_at": "2021-08-18T01:24:15.759Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年・学部3年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073057,
+      "name": "仏語科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2335"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "木下　樹親"
+      ],
+      "updated_at": "2021-09-17T01:52:10.998Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "水曜日",
+          "４時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073059,
+      "name": "理科指導法Ⅲ",
+      "numberlinks": [
+        "EDU-TEP2319"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "森藤　義孝"
+      ],
+      "updated_at": "2021-09-24T04:19:00.205Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "水曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079019,
+      "name": "理科指導法Ⅱ",
+      "numberlinks": [
+        "EDU-TEP2318J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2318J",
+      "instructors": [
+        "甲斐　初美"
+      ],
+      "updated_at": "2021-06-08T08:18:30.845Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073005,
+      "name": "理科指導法Ⅳ",
+      "numberlinks": [
+        "EDU-TEP2320J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2320J",
+      "instructors": [
+        "森藤　義孝"
+      ],
+      "updated_at": "2021-04-08T03:14:24.022Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "前期",
+      "day_time": [
+        [
+          "水曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079065,
+      "name": "教育方法技術指導法",
+      "numberlinks": [
+        "EDU-TEP2341J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2341J",
+      "instructors": [
+        "樋口　裕介"
+      ],
+      "updated_at": "2021-10-05T09:42:25.554Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071064,
+      "name": "国語科指導法Ⅰ",
+      "instructors": [
+        "前田　眞證"
+      ],
+      "updated_at": "2021-10-04T02:12:24.228Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "月曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21072062,
+      "name": "社会・地理歴史科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2307"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "佐長　健司"
+      ],
+      "updated_at": "2021-10-20T10:01:26.803Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "火曜日",
+          "５時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21073053,
+      "name": "生徒指導論",
+      "numberlinks": [
+        "EDU-TEP1401"
+      ],
+      "school": "EDU",
+      "major": "TE",
+      "subject_code": "P",
+      "instructors": [
+        "西郡　大"
+      ],
+      "updated_at": "2021-09-08T06:48:16.436Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期",
+      "day_time": [
+        [
+          "水曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071052,
+      "name": "総合的な学習の時間の指導",
+      "instructors": [
+        "伊藤　友子"
+      ],
+      "updated_at": "2021-10-02T14:41:18.585Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年（平成３１年度以降入学者）",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "冬学期",
+      "day_time": [
+        [
+          "月曜日",
+          "１時限"
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21071051,
+      "name": "特別活動指導法",
+      "numberlinks": [
+        "EDU-TEP2340J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2340J",
+      "instructors": [
+        "伊藤　友子"
+      ],
+      "updated_at": "2021-10-02T13:28:29.233Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 1,
+      "year": 2021,
+      "quarter": "秋学期",
+      "day_time": [
+        [
+          "月曜日",
+          "１時限"
+        ]
+      ],
+      "area": "伊都地区"
+    }
+  },
+  {
+    "main": {
+      "id": 21079064,
+      "name": "理科指導法Ⅰ",
+      "numberlinks": [
+        "EDU-TEP2317J"
+      ],
+      "school": "EDU",
+      "major": "TEP",
+      "subject_code": "2317J",
+      "instructors": [
+        "甲斐　初美"
+      ],
+      "updated_at": "2021-10-22T07:22:44.840Z",
+      "category": "-",
+      "lang": "日本語（J）",
+      "target_students_from": "教育学部",
+      "target_year": "学部2年 学部3年 学部4年",
+      "unit": 2,
+      "year": 2021,
+      "quarter": "後期集中",
+      "day_time": [
+        [
+          null,
+          null
+        ]
+      ],
+      "classroom": "-",
+      "area": "伊都地区"
+    }
+  }
+]
